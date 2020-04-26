@@ -13,6 +13,9 @@ class MainActivity : DaggerAppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            showFragment(BookFragment())
+        }
         navigate()
     }
 
@@ -24,6 +27,15 @@ class MainActivity : DaggerAppCompatActivity(R.layout.activity_main) {
                 R.id.action_characters -> showFragment(CharacterFragment())
             }
             true
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (navigation.selectedItemId != R.id.action_books) {
+            navigation.selectedItemId = R.id.action_books
+        } else {
+            finish()
         }
     }
 

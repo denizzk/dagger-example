@@ -45,9 +45,6 @@ class MovieFragment : DaggerFragment(R.layout.fragment_generic) {
         }
 
         showMovies(controller)
-//        controller.deepLinkClickListener = { deepLink ->
-//            openDeepLink(deepLink = deepLink)
-//        }
     }
 
     private fun showMovies(controller: MovieController) {

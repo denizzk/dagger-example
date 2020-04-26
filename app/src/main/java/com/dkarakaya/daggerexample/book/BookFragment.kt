@@ -45,9 +45,6 @@ class BookFragment : DaggerFragment(R.layout.fragment_generic) {
         }
 
         showBooks(controller)
-//        controller.deepLinkClickListener = { deepLink ->
-//            openDeepLink(deepLink = deepLink)
-//        }
     }
 
     private fun showBooks(controller: BookController) {

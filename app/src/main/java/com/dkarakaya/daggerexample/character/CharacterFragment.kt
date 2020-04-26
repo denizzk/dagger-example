@@ -46,9 +46,6 @@ class CharacterFragment : DaggerFragment(R.layout.fragment_generic) {
         }
 
         showCharacters(controller)
-//        controller.deepLinkClickListener = { deepLink ->
-//            openDeepLink(deepLink = deepLink)
-//        }
     }
 
     private fun showCharacters(controller: CharacterController) {

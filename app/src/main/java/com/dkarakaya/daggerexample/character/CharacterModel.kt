@@ -12,7 +12,7 @@ import com.dkarakaya.daggerexample.R
 abstract class CharacterModel : EpoxyModelWithHolder<CharacterModel.CharacterHolder>() {
 
     @EpoxyAttribute
-    var height: String? = null
+    lateinit var height: String
 
     @EpoxyAttribute
     lateinit var race: String

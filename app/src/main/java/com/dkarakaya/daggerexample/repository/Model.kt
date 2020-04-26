@@ -20,27 +20,33 @@ object Model {
     )
 
     data class Movie(
+        @SerializedName("docs")
+        @Expose
+        val movieDetails: List<MovieDetail>
+    )
+
+    data class MovieDetail(
         @SerializedName("_id")
         @Expose
-        private val id: String,
+        val id: String,
         @SerializedName("name")
         @Expose
-        private val name: String,
+        val name: String,
         @SerializedName("runtimeInMinutes")
         @Expose
-        private val runtimeInMinutes: Int,
+        val runtimeInMinutes: Int,
         @SerializedName("budgetInMillions")
         @Expose
-        private val budgetInMillions: Int,
+        val budgetInMillions: Double,
         @SerializedName("boxOfficeRevenueInMillions")
         @Expose
-        private val boxOfficeRevenueInMillions: Int,
+        val boxOfficeRevenueInMillions: Double,
         @SerializedName("academyAwardNominations")
         @Expose
-        private val academyAwardNominations: Int,
+        val academyAwardNominations: Int,
         @SerializedName("academyAwardWins")
         @Expose
-        private val academyAwardWins: Int
+        val academyAwardWins: Int
     )
 
     data class Character(
@@ -52,7 +58,7 @@ object Model {
     data class CharacterDetail(
         @SerializedName("_id")
         @Expose
-        val id: String,
+        val id: String?,
         @SerializedName("height")
         @Expose
         val height: String,
@@ -61,22 +67,22 @@ object Model {
         val race: String,
         @SerializedName("gender")
         @Expose
-        val gender: String,
+        val gender: String?,
         @SerializedName("birth")
         @Expose
-        val birth: String,
+        val birth: String?,
         @SerializedName("spouse")
         @Expose
-        val spouse: String,
+        val spouse: String?,
         @SerializedName("death")
         @Expose
-        val death: String,
+        val death: String?,
         @SerializedName("realm")
         @Expose
-        val realm: String,
+        val realm: String?,
         @SerializedName("hair")
         @Expose
-        val hair: String,
+        val hair: String?,
         @SerializedName("name")
         @Expose
         val name: String,

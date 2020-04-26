@@ -1,9 +1,10 @@
 package com.dkarakaya.daggerexample.character
 
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.dkarakaya.daggerexample.R
+import com.dkarakaya.daggerexample.viewmodel.ViewModelFactory
+import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.plugins.RxJavaPlugins
@@ -11,18 +12,21 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_generic.*
+import javax.inject.Inject
 
-class CharacterFragment : Fragment(R.layout.fragment_generic) {
+class CharacterFragment : DaggerFragment(R.layout.fragment_generic) {
 
-    private val viewModel by lazy {
-        CharacterViewModel()
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    lateinit var viewModel: CharacterViewModel
 
     private val disposable = CompositeDisposable()
 
     override fun onStart() {
         super.onStart()
 
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CharacterViewModel::class.java)
         initRecyclerView()
     }
 

@@ -1,4 +1,4 @@
-package com.dkarakaya.daggerexample.book
+package com.dkarakaya.daggerexample.movie
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -6,26 +6,26 @@ import com.dkarakaya.daggerexample.R
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.plugins.RxJavaPlugins.onError
+import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_generic.*
 import javax.inject.Inject
 
-class BookFragment : DaggerFragment(R.layout.fragment_generic) {
+class MovieFragment : DaggerFragment(R.layout.fragment_generic) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: BookViewModel
+    private lateinit var viewModel: MovieViewModel
 
     private val disposable = CompositeDisposable()
 
     override fun onStart() {
         super.onStart()
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieViewModel::class.java)
         initRecyclerView()
     }
 
@@ -36,7 +36,7 @@ class BookFragment : DaggerFragment(R.layout.fragment_generic) {
 
     private fun initRecyclerView() {
         val recyclerView = recycler_view
-        val controller = BookController()
+        val controller = MovieController()
 
         recyclerView.apply {
             setHasFixedSize(true)
@@ -44,24 +44,25 @@ class BookFragment : DaggerFragment(R.layout.fragment_generic) {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        showBooks(controller)
+        showMovies(controller)
 //        controller.deepLinkClickListener = { deepLink ->
 //            openDeepLink(deepLink = deepLink)
 //        }
     }
 
-    private fun showBooks(controller: BookController) {
-        viewModel.books()
+    private fun showMovies(controller: MovieController) {
+        viewModel.movies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onNext = { controller.bookDetails = it },
-                onError = ::onError
+                onNext = { controller.movieDetails = it },
+                onError = RxJavaPlugins::onError
             ).addTo(disposable)
     }
 
     companion object {
         private const val TAG = "BookFragment"
     }
+
 
 }

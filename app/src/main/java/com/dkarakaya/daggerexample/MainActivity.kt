@@ -2,9 +2,6 @@ package com.dkarakaya.daggerexample
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.dkarakaya.daggerexample.book.BookFragment
-import com.dkarakaya.daggerexample.character.CharacterFragment
-import com.dkarakaya.daggerexample.movie.MovieFragment
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.bottom_navigation_view.*
 
@@ -14,7 +11,7 @@ class MainActivity : DaggerAppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            showFragment(BookFragment())
+            showFragment(com.dkarakaya.book.BookFragment())
         }
         navigate()
     }
@@ -22,9 +19,9 @@ class MainActivity : DaggerAppCompatActivity(R.layout.activity_main) {
     private fun navigate() {
         navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.action_books -> showFragment(BookFragment())
-                R.id.action_movies -> showFragment(MovieFragment())
-                R.id.action_characters -> showFragment(CharacterFragment())
+                R.id.action_books -> showFragment(com.dkarakaya.book.BookFragment())
+                R.id.action_movies -> showFragment(com.dkarakaya.movie.MovieFragment())
+                R.id.action_characters -> showFragment(com.dkarakaya.character.CharacterFragment())
             }
             true
         }

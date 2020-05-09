@@ -1,2 +1,6 @@
 rootProject.name='dagger example'
 include ':app'
+include ':book'
+include ':core'
+include ':character'
+include ':movie'

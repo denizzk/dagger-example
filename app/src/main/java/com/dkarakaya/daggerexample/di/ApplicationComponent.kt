@@ -1,7 +1,6 @@
 package com.dkarakaya.daggerexample.di
 
 import com.dkarakaya.daggerexample.BaseApplication
-import com.dkarakaya.daggerexample.di.main.MainModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

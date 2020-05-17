@@ -15,4 +15,5 @@
     <string name="revenue">Revenue</string>
     <string name="award_nominations">Award Nominations</string>
     <string name="award_wins">Award Wins</string>
+    <string name="lorem_short">Lorem ipsum dolor sit amet.</string>
 </resources>
